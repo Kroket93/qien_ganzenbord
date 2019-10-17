@@ -38,8 +38,11 @@ namespace Ganzenbord
 
             int round = 1; // deze variabele houdt bij welke ronde het is
 
+
+
             while (!gameDone) //zolang gameDone niet true is doen we dingen:
             {
+                Player playerToDelete = null;
                 Console.WriteLine("Ronde "+Convert.ToString(round)); // we printen naar de console welke ronde het is
                 foreach (Player player in playerList) // voor elke speler in spelerlijst doen we dingen:
                 {
@@ -47,12 +50,18 @@ namespace Ganzenbord
                     int g = rollDice(random); //we roepen de rolldice functie aan, die geeft een int terug (again zie comments bij functie voor uitleg
                     Console.WriteLine(Convert.ToString(player.name)+" heeft +" + Convert.ToString(g) + " gegooid."); //we laten weten wat er gegooid is
                     player.location = movePlayer(player.name, player.location, g); //we roepen de movePlayer functie aan, wederom zie comments bij de functie definitie
-                    checkSpecial(ref gameDone, player, g, ref playerList); // we roepen checkspecial aan, zie comments bij functie definitie
+                    checkSpecial(ref gameDone, player, g, ref playerToDelete); // we roepen checkspecial aan, zie comments bij functie definitie, geeft speler terug die eventueel uit het spel moet
                     Console.WriteLine(" "); // voor extra leesbaarheid printen we een lege line
+                    Console.ReadKey();
                     
 
 
                 } //einde van foreach statement, elke speler is nu dus een keer aan de beurt geweest en we zijn klaar om naar de volgende ronde te gaan
+                if (playerToDelete != null) // checken of er een speler verwijderd moet worden (playerToDelete zou dan een player als waarde hebben gekregen door checkSpecial()
+                {
+                    playerList.Remove(playerToDelete);
+                    playerToDelete = null; // reset playerToDelete naar null, zodat ie bij de volgende iteratie niet nogmaals de player gaat proberen te deleten uit playerList
+                }
                 
                 round += 1; //we tellen 1 bij round op
                 //je zou dus een iteratie van de while loop kunnen zien als een ronde, waarbij iedereen aan de beurt komt.
@@ -77,15 +86,16 @@ namespace Ganzenbord
         // int g: dit was onze gooi van de dobbelsteen
         // ref zie je ook terug bij de parameter ref List<Player> playerlist, omdat we een speler uit het spel (dus ook uit de playerList) willen halen als ie 23 heeft gegooid
     
-        private static void checkSpecial(ref bool gameDone, Player player, int g, ref List<Player> playerlist)
+        private static void checkSpecial(ref bool gameDone, Player player, int g, ref Player playerToDelete)
         {
             switch(player.location) // een switch statement is eigenlijk een if statement op steroiden, we voeren een waarde in (in dit geval player.location), en dan kunnen we met case: x zeggen dat er iets
                 // moet gebeuren op het moment dat die player.location hetzelfde is als x.
             {
                 case 23:
-                    Console.WriteLine("BOEF! "+Convert.ToString(player.name)+"is de gevangenis in gegooid. Game Over.");
-                    playerlist.Remove(player); // verwijder de speler uit de playerList. aangezien het spel elke ronde over de playerList itereert, is dit genoeg om de speler niet meer mee te laten doen.
-                    Console.ReadKey(); //dit zorgt ervoor dat er op een key gedrukt moet worden voordat we verder gaan
+                    Console.WriteLine("BOEF! "+Convert.ToString(player.name)+" is de gevangenis in gegooid. Game Over.");
+                    playerToDelete = player; // sla de te verwijderen speler op in de playerToDelete variabele, zodat we die na de forloop kunnen verwijderen uit playerList
+                    //aangezien het spel elke ronde over de playerList itereert, is dit genoeg om de speler niet meer mee te laten doen.
+                    
                     break; //break zorgt ervoor dat we uit onze switch statement gaan. In dit geval zijn we klaar omdat onze speler niet meer meedoet, en is de functie checkSpecial dus klaar
                 case 63:
                     Console.WriteLine("Gewonnen! Het spel eindigt");

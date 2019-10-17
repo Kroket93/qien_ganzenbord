@@ -4,3 +4,9 @@ D:\dev\qien csharp\les1 console app\ganzenbord\Ganzenbord\Ganzenbord\bin\Debug\G
 D:\dev\qien csharp\les1 console app\ganzenbord\Ganzenbord\Ganzenbord\bin\Debug\Ganzenbord.pdb
 D:\dev\qien csharp\les1 console app\ganzenbord\Ganzenbord\Ganzenbord\obj\Debug\Ganzenbord.exe
 D:\dev\qien csharp\les1 console app\ganzenbord\Ganzenbord\Ganzenbord\obj\Debug\Ganzenbord.pdb
+D:\dev\qien_csharp\les1_console_app\ganzenbord\Ganzenbord\Ganzenbord\bin\Debug\Ganzenbord.exe.config
+D:\dev\qien_csharp\les1_console_app\ganzenbord\Ganzenbord\Ganzenbord\bin\Debug\Ganzenbord.exe
+D:\dev\qien_csharp\les1_console_app\ganzenbord\Ganzenbord\Ganzenbord\bin\Debug\Ganzenbord.pdb
+D:\dev\qien_csharp\les1_console_app\ganzenbord\Ganzenbord\Ganzenbord\obj\Debug\Ganzenbord.csprojAssemblyReference.cache
+D:\dev\qien_csharp\les1_console_app\ganzenbord\Ganzenbord\Ganzenbord\obj\Debug\Ganzenbord.exe
+D:\dev\qien_csharp\les1_console_app\ganzenbord\Ganzenbord\Ganzenbord\obj\Debug\Ganzenbord.pdb
